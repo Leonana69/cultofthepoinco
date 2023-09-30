@@ -1,20 +1,45 @@
 body {
     font-family: Arial, sans-serif;
     display: flex;
-    justify-content: center;
+    flex-direction: column;  /* This ensures content flows vertically */
     align-items: center;
     height: 100vh;
     background-color: #f0f0f0;
+    padding-top: 20px;  /* Provides some space at the top */
+}
+
+h1 {
+    font-size: 4em;  /* Adjust to your preference */
+    margin-bottom: 30px;  /* Provides some space between title and grid */
+    color: #333;  /* Font color, adjust to your liking */
+}
+
+.divider {
+    width: var(--width, 80%); /* overridden with the custom property value, if provided */
+    border-top: var(--height, 10px) solid #000000;
+    margin: 10px 0;
 }
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* This creates 3 columns; adjust as needed */
+    grid-template-columns: repeat(5, 100px); /* This will adjust based on the GIFs' original sizes */
     gap: 20px; /* Gap between each grid item */
-    width: 80%; /* Adjust based on your preference */
+    width: fit-content; /* Let the width be determined by its content */
+    margin: auto; /* Center the grid container */
+}
+
+.grid-item {
+    background-color: white;
+    height: 100px; /* This sets each grid item to be 200px tall; adjust to match your desired size */
+    display: flex;
+    align-items: center; /* Center the GIF vertically */
+    justify-content: center; /* Center the GIF horizontally */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .grid-item img {
-    width: 100%; /* Makes the GIFs responsive */
-    border-radius: 10px; /* Optional: Rounds the corners for a smoother look */
+    max-width: 100%; /* Ensure GIFs aren't larger than their container */
+    max-height: 100%;
 }

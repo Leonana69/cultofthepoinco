@@ -1,21 +1,27 @@
+---
+layout: Minima
+---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GIF Grid</title>
+    <title>Cult of the Poinco</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+<hr class="divider">
+<h1>Cult of the Poinco</h1>
+<hr class="divider">
+
 <div class="grid-container">
-    <div class="grid-item"><img src="data/gif/cry.gif" alt="GIF 1"></div>
-    <div class="grid-item"><img src="data/gif/eat_noodle.gif" alt="GIF 2"></div>
-    <div class="grid-item"><img src="data/gif/handle_balloon.gif" alt="GIF 3"></div>
-    <div class="grid-item"><img src="data/gif/handle_balloon.gif" alt="GIF 4"></div>
-    <div class="grid-item"><img src="data/gif/play_ball.gif" alt="GIF 5"></div>
-    <div class="grid-item"><img src="data/gif/pour_tea.gif" alt="GIF 6"></div>
-    <!-- Add more GIFs as needed -->
+    {% for image in site.static_files %}
+        {% if image.path contains 'data/gif' %}
+            <div class="grid-item"><img src="{{ image.path }}" alt="{{ image.name }}"></div>
+        {% endif %}
+    {% endfor %}
 </div>
 
 </body>
