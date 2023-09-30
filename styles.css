@@ -1,11 +1,15 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: monospace;
     display: flex;
     flex-direction: column;  /* This ensures content flows vertically */
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     padding-top: 20px;  /* Provides some space at the top */
+}
+
+a {
+    text-decoration: none;
 }
 
 h1 {
@@ -14,8 +18,12 @@ h1 {
     color: #333;  /* Font color, adjust to your liking */
 }
 
+h2 {
+    text-align: center;
+}
+
 .divider {
-    width: var(--width, 80%); /* overridden with the custom property value, if provided */
+    width: var(--width, 600px); /* overridden with the custom property value, if provided */
     border-top: var(--height, 10px) solid #000000;
     margin: 10px 0;
 }
@@ -30,7 +38,8 @@ h1 {
 
 .grid-item {
     background-color: white;
-    height: 100px; /* This sets each grid item to be 200px tall; adjust to match your desired size */
+    width: 100px;
+    height: 100px;
     display: flex;
     align-items: center; /* Center the GIF vertically */
     justify-content: center; /* Center the GIF horizontally */
@@ -42,4 +51,28 @@ h1 {
 .grid-item img {
     max-width: 100%; /* Ensure GIFs aren't larger than their container */
     max-height: 100%;
+}
+
+.rgb-button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    background-color: #5f5f5f; /* Initial color */
+    color: white;
+    outline: none;
+    border-radius: 7px;
+    transition: background-color 0.3s;
+}
+
+.rgb-button:hover {
+    animation: colorChange 5s infinite; /* The animation will take 5 seconds and repeat infinitely */
+}
+
+@keyframes colorChange {
+    0% { background-color: #0099ff; }
+    20% { background-color: #ff1900; }
+    40% { background-color: #00ff6a; }
+    60% { background-color: #ff9d00; }
+    80% { background-color: #b700ff; }
+    100% { background-color: #0099ff; }
 }

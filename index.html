@@ -1,5 +1,4 @@
 ---
-layout: Minima
 ---
 
 <!DOCTYPE html>
@@ -7,19 +6,53 @@ layout: Minima
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cult of the Poinco</title>
+    <title>Cult of the POiNCO</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <hr class="divider">
-<h1>Cult of the Poinco</h1>
+<h1>Cult of the POiNCO</h1>
 <hr class="divider">
+
+<table>
+    {% assign parrot_swing = "/data/gif/parrot_swing.gif" %}
+    <tr>
+        <td><img src="{{ parrot_swing | relative_url }}" /></td>
+        <td><img src="{{ parrot_swing | relative_url }}" /> 
+            <img src="{{ parrot_swing | relative_url }}" /> 
+            <img src="{{ parrot_swing | relative_url }}" /></td>
+        <td><img src="{{ parrot_swing | relative_url }}" /></td>
+    </tr>
+    <tr>
+        <td><img src="{{ parrot_swing | relative_url }}" /></td>
+        <td><h2>SHAKE OR DIE</h2></td>
+        <td><img src="{{ parrot_swing | relative_url }}" /></td>
+    </tr>
+    <tr>
+        <td><img src="{{ parrot_swing | relative_url }}" /></td>
+        <td><img src="{{ parrot_swing | relative_url }}" /> 
+            <img src="{{ parrot_swing | relative_url }}" /> 
+            <img src="{{ parrot_swing | relative_url }}" /></td>
+        <td><img src="{{ parrot_swing | relative_url }}" /></td>
+    </tr>
+</table>
+<hr class="divider" style="--height: 5px;">
+
+
+<p style="max-width: 600px; text-align: justify;">This collection of POiNCO emojis is inspired by the <a href="https://cultofthepartyparrot.com/">Cult of the Party Parrot</a>.
+    The fantasy artworks featured here were sourced from the web and are not my original creations. Kindly refrain from using them for commercial purposes.</p>
+
+<a href="https://github.com/Leonana69/cultofthepoinco" class="rgb-button">GitHub</a>
+<hr class="divider" style="--height: 5px;">
+
 
 <div class="grid-container">
     {% for image in site.static_files %}
         {% if image.path contains 'data/gif' %}
+        <a href="{{ image.path | relative_url }}" target="_blank" class="grid-link">
             <div class="grid-item"><img src="{{ image.path | relative_url }}" alt="{{ image.name }}"></div>
+        </a>
         {% endif %}
     {% endfor %}
 </div>

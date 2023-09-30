@@ -1,24 +1,28 @@
 ---
-permalink: /404.html
-layout: Minima
 ---
 
-<style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cult of the POiNCO</title>
+  {% assign css_path = "styles.css" %}
+  <link rel="stylesheet" href="{{ css_path | relative_url }}">
+</head>
 
 <div class="container">
   <h1>404</h1>
+  {% assign gifs_array = "" | split: ',' %}
+
+  {% for image in site.static_files %}
+      {% if image.path contains 'data/gif' %}
+        {% assign gifs_array = gifs_array | push: image %}
+      {% endif %}
+  {% endfor %}
+
+  {% assign random_gif = gifs_array | sample %}
+  <div class="grid-item">
+      <img src="{{ random_gif.path | relative_url }}" alt="{{ random_gif.name }}">
+  </div>
 
   <p><strong>Page not found :(</strong></p>
   <p>The requested page could not be found.</p>
