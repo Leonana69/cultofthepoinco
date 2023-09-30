@@ -19,7 +19,7 @@ layout: Minima
 <div class="grid-container">
     {% for image in site.static_files %}
         {% if image.path contains 'data/gif' %}
-            <div class="grid-item"><img src="{{ image.path }}" alt="{{ image.name }}"></div>
+            <div class="grid-item"><img src="{{ image.path | relative_url }}" alt="{{ image.name }}"></div>
         {% endif %}
     {% endfor %}
 </div>
