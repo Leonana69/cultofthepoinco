@@ -51,12 +51,25 @@
 <div class="grid-container">
     {% for image in site.static_files %}
         {% if image.path contains 'data/gif' %}
-        <a href="{{ image.path | relative_url }}" target="_blank" class="grid-link">
-            <div class="grid-item"><img src="{{ image.path | relative_url }}" alt="{{ image.name }}"></div>
-        </a>
+        <div class="grid-item" onclick="copyGif(this, '{{ image.path | relative_url }}')">
+            <img src="{{ image.path | relative_url }}" alt="{{ image.name }}">
+        </div>
         {% endif %}
     {% endfor %}
 </div>
+
+<div id="toast">Gif Copied</div>
+
+<script>
+function copyGif(el, path) {
+    var url = window.location.origin + path;
+    navigator.clipboard.writeText(url).then(function() {
+        var toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(function() { toast.classList.remove('show'); }, 1500);
+    });
+}
+</script>
 
 </body>
 </html>
