@@ -51,7 +51,7 @@
 <div class="grid-container">
     {% for image in site.static_files %}
         {% if image.path contains 'data/gif' %}
-        <div class="grid-item" onclick="copyGif(this, '{{ image.path | relative_url }}')">
+        <div class="grid-item" onclick="handleClick('{{ image.path | relative_url }}')">
             <img src="{{ image.path | relative_url }}" alt="{{ image.name }}">
         </div>
         {% endif %}
@@ -61,13 +61,34 @@
 <div id="toast">Gif Copied</div>
 
 <script>
-function copyGif(el, path) {
+function showToast(msg) {
+    var toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(function() { toast.classList.remove('show'); }, 1500);
+}
+
+function handleClick(path) {
     var url = window.location.origin + path;
-    navigator.clipboard.writeText(url).then(function() {
-        var toast = document.getElementById('toast');
-        toast.classList.add('show');
-        setTimeout(function() { toast.classList.remove('show'); }, 1500);
-    });
+    if (path.toLowerCase().endsWith('.gif')) {
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = path.split('/').pop();
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        showToast('Gif Downloaded');
+    } else {
+        fetch(url)
+            .then(function(r) { return r.blob(); })
+            .then(function(blob) {
+                var type = blob.type || 'image/png';
+                return navigator.clipboard.write([
+                    new ClipboardItem(Object.fromEntries([[type, blob]]))
+                ]);
+            })
+            .then(function() { showToast('Image Copied'); });
+    }
 }
 </script>
 
